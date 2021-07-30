@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #[em Library], a very basic Express website for displaying catalog information.
+
+  h1 Content 
+
+  if error 
+    p There was an error getting requested content 
+  else 
+    p The library has the following record counts: 
+
+    ul 
+      li(class="eachl") #[strong Books:] !{data.book_count}
+      li(class="eachl") #[strong Copies:] !{data.book_instance_count}
+      li(class="eachl") #[strong Copies Available:] !{data.book_instance_available_count}
+      li(class="eachl") #[strong Authors:] !{data.author_count}
+      li(class="eachl") #[strong Genres:] !{data.genre_count}
+
+
+
+
+

@@ -1,0 +1,48 @@
+extends layout 
+
+block content 
+
+    h1 Title:  #{data.book.title}
+
+    p #[strong Author: ]
+        a(href=data.book.author.url) #{data.book.author.name}
+    p #[strong Summary: ] #{data.book.summary}
+    p #[strong ISBN: ] #{data.book.isbn}
+    p #[strong Genre: ]
+        each genre,index in data.book.genre 
+            a(href=genre.url) #{genre.name} 
+            if index < data.book.genre.length -1 
+                |,
+
+
+
+    div(style='margin-left:20px;margin-top:20px')
+
+        h4 Copies 
+
+        each ist in data.book_instance 
+            hr 
+            if ist.status=='Available'
+                p(class="text-success") #{ist.status}
+            else if ist.status=='Maintenance'
+                p.text-danger #{ist.status}
+            else
+                p.text-warning #{ist.status}
+            p #[strong Imprint: ] #{ist.imprint}
+            if ist.status!='Available'
+                p #[strong Due back:] #{ist.due_date}
+            p #[strong Id: ]
+                a(href=ist.url) #{ist._id}
+
+        else 
+            p There are currently no copies of this book.
+
+    hr
+    p
+        a(href=data.book.url+'/delete') Delete Book
+
+    p
+        a(href=data.book.url+'/update') Update Book
+
+
+

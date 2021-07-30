@@ -1,0 +1,28 @@
+extends layout 
+
+block content 
+    h1= title 
+
+    if book_instances.length
+
+        p.text-warning #[strong Please delete the following Book Instances before attempting to delete this book.]
+
+        div(style='margin-left:20px;margin-top:20px')
+
+            h4 Book Instances
+            dl
+            each bki in book_instances
+                dt
+                    a(href=bki.url) #{bki.book}
+                dd
+
+    else
+        h4.text-danger Do you really want to delete this book? 
+        p.text-danger This action cannot be undone.
+
+
+        form(method='POST' action='')
+            div.form-group
+                input#bookid.form-control(type='hidden',name='bookid', required='true', value=book._id )
+
+            button.btn.btn-danger(type='submit') Delete Book

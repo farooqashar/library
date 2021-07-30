@@ -1,0 +1,26 @@
+extends layout 
+
+block content 
+
+    h1 Author:  #{data.author.name}
+    p #{data.author.lifespan}
+
+    div(style='margin-left:20px;margin-top:20px')
+
+        h4 Books 
+
+        dl
+            each book in data.author_books 
+                dt 
+                    a(href=book.url) #{book.title} 
+                dd #{book.summary} 
+
+            else 
+                p This author currently has no associated books.
+
+    hr
+    p
+        a(href=data.author.url+'/delete') Delete Author
+
+
+

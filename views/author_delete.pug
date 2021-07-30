@@ -1,0 +1,30 @@
+extends layout 
+
+block content 
+    h1 #{title}: #{author.name} 
+    p= author.lifespan 
+
+    if author_books.length
+
+        p.text-warning #[strong Please delete the following books before attempting to delete this author.]
+
+        div(style='margin-left:20px;margin-top:20px')
+
+            h4 Books
+
+            dl
+            each book in author_books
+                dt
+                    a(href=book.url) #{book.title}
+                dd #{book.summary}
+
+    else
+        h4.text-danger Do you really want to delete this author? 
+        p.text-danger This action cannot be undone.
+
+
+        form(method='POST' action='')
+            div.form-group
+                input#authorid.form-control(type='hidden',name='authorid', required='true', value=author._id )
+
+            button.btn.btn-danger(type='submit') Delete Author

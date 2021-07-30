@@ -1,0 +1,14 @@
+extends layout 
+
+block content 
+    h1= title 
+
+    h4.text-danger Do you really want to delete this Book Instance? 
+    p.text-danger This action cannot be undone.
+
+
+    form(method='POST' action='')
+        div.form-group
+            input#bkid.form-control(type='hidden',name='bkid', required='true', value=data._id)
+
+        button.btn.btn-danger(type='submit') Delete Book Instance

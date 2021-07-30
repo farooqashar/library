@@ -1,0 +1,23 @@
+extends layout
+
+block content
+
+  h1 ID: #{data._id}
+
+  p #[strong Title: ]
+    a(href=data.book.url) #{data.book.title}
+  p #[strong Imprint: ] #{data.imprint}
+
+  p #[strong Status: ]
+    if data.status=='Available'
+      span(class="text-success") #{data.status}
+    else if data.status=='Maintenance'
+      span.text-danger #{data.status}
+    else
+      span.text-warning #{data.status}
+
+  if data.status!='Available'
+    p #[strong Due back: ] #{data.due_date}
+  hr
+  p 
+    a(href=data.url+'/delete') Delete Book Instance

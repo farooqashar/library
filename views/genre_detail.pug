@@ -1,0 +1,26 @@
+extends layout 
+
+block content 
+
+    h1 Genre:  #{data.genre.name}
+
+    div(style='margin-left:20px;margin-top:20px')
+
+        h4 Books 
+
+        dl
+            each book in data.genre_books 
+                dt 
+                    a(href=book.url) #{book.title} 
+                dd #{book.summary} 
+
+            else 
+                p This Genre currently has no associated books.
+
+
+    hr
+    p
+        a(href=data.genre.url+'/delete') Delete Genre
+
+
+
